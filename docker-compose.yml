@@ -1,3 +1,4 @@
+# this is a copy of docker-compose.full.yml with added Ollama service
 services:
   surrealdb:
     image: surrealdb/surrealdb:v2

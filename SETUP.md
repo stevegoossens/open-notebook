@@ -1,10 +1,18 @@
 # Setup
 
-Copy example env file
+## Copy example env file
 
 ```
 cp .env.example docker.env
 ```
+
+## Use `sed` to replace the OLLAMA_API_BASE line:
+
+```
+sed -i 's|^# OLLAMA_API_BASE=.*$|OLLAMA_API_BASE="http://ollama:11434"|' docker.env
+```
+
+<details><summary>Manual way: expand/collapse</summary><p>
 
 Edit `docker.env` to point at `ollama` container
 
@@ -12,16 +20,20 @@ Edit `docker.env` to point at `ollama` container
 OLLAMA_API_BASE="http://ollama:11434"
 ```
 
-Start docker stack
+</p></details>
+
+## Start docker stack
 
 ```
-docker compose -f docker-compose.full-with-ollama.yml up
+docker compose up -d
 ```
+
+<details><summary>Pull different models: expand/collapse</summary><p>
 
 Pull models
 
 ```
-docker compose -f docker-compose.full-with-ollama.yml exec ollama bash
+docker compose exec ollama bash
 ```
 
 Download models inside container
@@ -36,5 +48,7 @@ Restart docker compose stack
 
 ```
 # stop the running stack with Ctrl+C or `docker compose stop`
-docker compose -f docker-compose.full-with-ollama.yml up -d
+docker compose up -d
 ```
+
+</p><details>
